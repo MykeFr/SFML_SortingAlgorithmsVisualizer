@@ -13,7 +13,7 @@ void sortIt(Sorter func, ArrayController<int>* vec, std::atomic<bool>* done)
 Visualizer::Visualizer(std::string t) : vec(SIZE), done(false), algorithmsIndex(0)
 {
 	title = t;
-	// setupWindow(1920.f, 1080.f, 10.f, 10.f, sf::Style::Default);
+	setupWindow(1650.f * SW, 900.f * SH, 10.f, 10.f, sf::Style::Default);
 	algorithms.push_back(std::make_pair(&pancakeSort, "PancakeSort"));
 	algorithms.push_back(std::make_pair(&bitonicSort, "BitonicSort"));
 	algorithms.push_back(std::make_pair(&insertionSort, "InsertionSort"));
@@ -71,11 +71,11 @@ bool Visualizer::onUpdate(const float fElapsedTime, const float fTotalTime)
 	if (counter++ % FRAME_RATIO == 1) {
 		img.setTexture(txt);
 		float scale = pow(0.99f, fElapsedTime * getMaxFPS());
-		float scale_a = pow(0.95f,  fElapsedTime * getMaxFPS());
+		float scale_a = pow(0.96f,  fElapsedTime * getMaxFPS());
 		img.setScale(scale, scale);
 		img.setColor(sf::Color(255, 255, 255, 255 * scale_a));
 		// img.setPosition(sf::Vector2f(-5., -2.));
-		img.setPosition(sf::Vector2f(-1., -0.6));
+		img.setPosition(sf::Vector2f(-1. * SCREENWIDTH / 1260., -0.6 * SCREENHEIGHT / 720.));
 	}
 
 	return true;
@@ -132,33 +132,33 @@ bool Visualizer::onDraw()
 
 	window.draw(GF::Text(algorithms[algorithmsIndex].second + " ( " + std::to_string(
 	                         algorithmsIndex + 1) + "/" + std::to_string(algorithms.size()) + " )",
-	                     TOPLEFT_F + sf::Vector2f(1, 20),
+	                     TOPLEFT_F + sf::Vector2f(1, 20 * SH * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Comparisons: " + std::to_string(vec.getComparisonsCounter()),
-	                     TOPLEFT_F + sf::Vector2f(1, 40),
+	                     TOPLEFT_F + sf::Vector2f(1, 40 * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Assignments: " + std::to_string(vec.getAssignmentsCounter()),
-	                     TOPLEFT_F + sf::Vector2f(1, 60),
+	                     TOPLEFT_F + sf::Vector2f(1, 60 * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
 
 	window.draw(GF::Text("Total time (secs): " + std::to_string(totalTime),
-	                     TOPLEFT_F + sf::Vector2f(1, 80),
+	                     TOPLEFT_F + sf::Vector2f(1, 80 * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Sleep time (secs): " + std::to_string(sleepTime / 1000000),
-	                     TOPLEFT_F + sf::Vector2f(1, 100),
+	                     TOPLEFT_F + sf::Vector2f(1, 100 * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Real time (secs): " + std::to_string((totalTime - sleepTime / 1000000)),
-	                     TOPLEFT_F + sf::Vector2f(1, 120),
+	                     TOPLEFT_F + sf::Vector2f(1, 120 * SH),
 	                     (int)(SH * 15),
 	                     WHITE,
 	                     GF::TOPLEFT));
