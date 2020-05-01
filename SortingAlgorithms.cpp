@@ -1,3 +1,6 @@
+// Algorithms provided by GeeksForGeeks.com
+// https://www.geeksforgeeks.org/sorting-algorithms/
+
 #include "ArrayController.hpp"
 
 ///////////////////////////////////////////SELECTIONSORT/////////////////////////////////////////////////////////////
