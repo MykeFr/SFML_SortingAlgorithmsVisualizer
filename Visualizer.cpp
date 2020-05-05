@@ -133,33 +133,33 @@ bool Visualizer::onDraw()
 	window.draw(GF::Text(algorithms[algorithmsIndex].second + " ( " + std::to_string(
 	                         algorithmsIndex + 1) + "/" + std::to_string(algorithms.size()) + " )",
 	                     TOPLEFT_F + sf::Vector2f(1, 20 * SH * SH),
-	                     (int)(SH * 15),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Comparisons: " + std::to_string(vec.getComparisonsCounter()),
-	                     TOPLEFT_F + sf::Vector2f(1, 40 * SH),
-	                     (int)(SH * 15),
+	                     TOPLEFT_F + sf::Vector2f(1, 50 * SH),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Assignments: " + std::to_string(vec.getAssignmentsCounter()),
-	                     TOPLEFT_F + sf::Vector2f(1, 60 * SH),
-	                     (int)(SH * 15),
+	                     TOPLEFT_F + sf::Vector2f(1, 80 * SH),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 
 	window.draw(GF::Text("Total time (secs): " + std::to_string(totalTime),
-	                     TOPLEFT_F + sf::Vector2f(1, 80 * SH),
-	                     (int)(SH * 15),
+	                     TOPLEFT_F + sf::Vector2f(1, 110 * SH),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Sleep time (secs): " + std::to_string(sleepTime / 1000000),
-	                     TOPLEFT_F + sf::Vector2f(1, 100 * SH),
-	                     (int)(SH * 15),
+	                     TOPLEFT_F + sf::Vector2f(1, 140 * SH),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 	window.draw(GF::Text("Real time (secs): " + std::to_string((totalTime - sleepTime / 1000000)),
-	                     TOPLEFT_F + sf::Vector2f(1, 120 * SH),
-	                     (int)(SH * 15),
+	                     TOPLEFT_F + sf::Vector2f(1, 170 * SH),
+	                     (int)(SH * 25),
 	                     WHITE,
 	                     GF::TOPLEFT));
 
@@ -169,5 +169,6 @@ bool Visualizer::onDraw()
 // called before exiting the app
 void Visualizer::onDestroy()
 {
-	if(!done) exit(1);
+	if(done) sortThread.join();
+	else exit(1);
 }
