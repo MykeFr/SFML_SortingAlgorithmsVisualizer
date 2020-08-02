@@ -7,6 +7,8 @@ if [ $? -eq 0 ] ; then
 		time $name
 	elif [[ "$1" == "v" || "$1" == "valgrind" ]]; then
 		valgrind --leak-check=yes $name
+	elif [[ "$1" == "bt" ]]; then
+		echo "" | gdb $name -ex run -ex bt | grep "#"
 	else
 		$name
 	fi

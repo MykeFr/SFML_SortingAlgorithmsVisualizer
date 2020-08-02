@@ -17,3 +17,6 @@ bin/
 
 *.floo*
 *.mp4
+/results.ods
+/video.kdenlive
+/video_backup0.kdenlive
